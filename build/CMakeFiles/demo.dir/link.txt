@@ -1,1 +1,1 @@
-/usr/bin/clang++-14  -Wall --std=c++2a -O0 -g -g   CMakeFiles/demo.dir/main.cpp.o CMakeFiles/demo.dir/src/IPv4Addr.cpp.o CMakeFiles/demo.dir/src/socket.cpp.o CMakeFiles/demo.dir/src/task.cpp.o  -o demo  -lpthread 
+/usr/bin/g++  -Wall --std=c++2a -O0 -g -g   CMakeFiles/demo.dir/main.cpp.o CMakeFiles/demo.dir/src/IPv4Addr.cpp.o CMakeFiles/demo.dir/src/socket.cpp.o CMakeFiles/demo.dir/src/task.cpp.o  -o demo  -lpthread 

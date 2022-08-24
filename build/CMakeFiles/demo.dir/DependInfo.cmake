@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lotuscc/git_projects/cgo/src/socket.cpp" "/home/lotuscc/git_projects/cgo/build/CMakeFiles/demo.dir/src/socket.cpp.o"
   "/home/lotuscc/git_projects/cgo/src/task.cpp" "/home/lotuscc/git_projects/cgo/build/CMakeFiles/demo.dir/src/task.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

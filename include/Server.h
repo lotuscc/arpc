@@ -54,7 +54,9 @@ public:
         acceptor->socket.listen();
     }
 
-    void Message(Connector *conn, Setting *setting) {
+    // void default_Message(Connector *conn, Setting *setting) {
+
+    void default_Message(Connector *conn) {
         char data[64];
 
         while (1) {
@@ -76,6 +78,15 @@ public:
         //     printf("wait \n");
         // }
     }
+
+    using MessageCall = std::function<void(Connector *conn)>;
+
+    MessageCall message;
+
+    void setdefaultMessage(MessageCall call) {
+        message = std::move(call);
+    }
+
     void Accept(Connector *conn, Setting *setting) {
         while (1) {
             auto client_addr = new ell_Ipv4Addr();
@@ -89,11 +100,18 @@ public:
 
             Connector *client_conn = new Connector(connfd, *client_addr);
 
-            client_conn->callback =
-                std::bind(&Server::Message, this, client_conn, setting);
+            // 这句必须加上，否则会出现奇怪的bug
+            Connector *copy = client_conn;
+
+            // gcc clang 编译器行为不同
+            // 此处有个bug
+
+            // client_conn->callback =
+            //     std::bind(&Server::default_Message, this, copy);
+
+            client_conn->callback = std::bind(message, copy);
 
             uintptr_t ptr = (uintptr_t)client_conn;
-
             client_conn->t = new task((void (*)(void))g_callback_start, ptr);
 
             setting->Conns[connfd] = client_conn;
@@ -109,52 +127,15 @@ public:
     }
 
     void acceptInit() {
-        acceptor->callback =
-            std::bind(&Server::Accept, this, acceptor, setting);
-
-        acceptor->t = new task((void (*)(void))g_callback_start, (uintptr_t)acceptor);
+        Connector *copy = acceptor;
+        acceptor->callback = std::bind(&Server::Accept, this, copy, setting);
+        uintptr_t ptr = (uintptr_t)acceptor;
+        acceptor->t = new task((void (*)(void))g_callback_start, ptr);
 
         setting->Conns[acceptor->socket.fd()] = acceptor;
 
         poller.append(acceptor->socket.fd(), EPOLLIN | EPOLLET);
     }
-
-    // void accept() {
-
-    //     std::thread t(&Server::start, this);
-
-    //     // t.detach();
-
-    //     while (1) {
-    //         auto client_addr = new ell_Ipv4Addr();
-
-    //         // accept 后期改成异步
-    //         // 直接accept 非阻塞
-    //         int connfd = ::accept4(acceptor->socket.fd(), client_addr->addr(),
-    //                                client_addr->len_addr(), SOCK_NONBLOCK);
-
-    //         printf("accept: %d \n", connfd);
-
-    //         Connector *client_conn = new Connector(connfd, *client_addr);
-
-    //         client_conn->callback =
-    //             std::bind(&Server::Message, this, client_conn, setting);
-
-    //         uintptr_t ptr = (uintptr_t)client_conn;
-
-    //         client_conn->t = new task((void (*)(void))g_callback_start, ptr);
-
-    //         setting->Conns[connfd] = client_conn;
-
-    //         poller.append(connfd, EPOLLIN | EPOLLET);
-
-    //         printf("in start,  client_conn addr : %lx \n",
-    //                (uintptr_t)client_conn);
-
-    //         // 取消注释会多运行一次
-    //         // task_queue.push(client_conn->t);
-    //     }
-    // }
 
     void start() {
 

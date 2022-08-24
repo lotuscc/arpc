@@ -60,54 +60,54 @@ include CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/main.cpp.o: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/main.cpp.o: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lotuscc/git_projects/cgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/main.cpp.o"
-	/usr/bin/clang++-14  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/main.cpp.o -c /home/lotuscc/git_projects/cgo/main.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/main.cpp.o -c /home/lotuscc/git_projects/cgo/main.cpp
 
 CMakeFiles/demo.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/main.cpp.i"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/main.cpp > CMakeFiles/demo.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/main.cpp > CMakeFiles/demo.dir/main.cpp.i
 
 CMakeFiles/demo.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/main.cpp.s"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/main.cpp -o CMakeFiles/demo.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/main.cpp -o CMakeFiles/demo.dir/main.cpp.s
 
 CMakeFiles/demo.dir/src/IPv4Addr.cpp.o: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/src/IPv4Addr.cpp.o: ../src/IPv4Addr.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lotuscc/git_projects/cgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/demo.dir/src/IPv4Addr.cpp.o"
-	/usr/bin/clang++-14  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/src/IPv4Addr.cpp.o -c /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/src/IPv4Addr.cpp.o -c /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp
 
 CMakeFiles/demo.dir/src/IPv4Addr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/src/IPv4Addr.cpp.i"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp > CMakeFiles/demo.dir/src/IPv4Addr.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp > CMakeFiles/demo.dir/src/IPv4Addr.cpp.i
 
 CMakeFiles/demo.dir/src/IPv4Addr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/src/IPv4Addr.cpp.s"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp -o CMakeFiles/demo.dir/src/IPv4Addr.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp -o CMakeFiles/demo.dir/src/IPv4Addr.cpp.s
 
 CMakeFiles/demo.dir/src/socket.cpp.o: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/src/socket.cpp.o: ../src/socket.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lotuscc/git_projects/cgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/demo.dir/src/socket.cpp.o"
-	/usr/bin/clang++-14  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/src/socket.cpp.o -c /home/lotuscc/git_projects/cgo/src/socket.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/src/socket.cpp.o -c /home/lotuscc/git_projects/cgo/src/socket.cpp
 
 CMakeFiles/demo.dir/src/socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/src/socket.cpp.i"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/src/socket.cpp > CMakeFiles/demo.dir/src/socket.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/src/socket.cpp > CMakeFiles/demo.dir/src/socket.cpp.i
 
 CMakeFiles/demo.dir/src/socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/src/socket.cpp.s"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/src/socket.cpp -o CMakeFiles/demo.dir/src/socket.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/src/socket.cpp -o CMakeFiles/demo.dir/src/socket.cpp.s
 
 CMakeFiles/demo.dir/src/task.cpp.o: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/src/task.cpp.o: ../src/task.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lotuscc/git_projects/cgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/demo.dir/src/task.cpp.o"
-	/usr/bin/clang++-14  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/src/task.cpp.o -c /home/lotuscc/git_projects/cgo/src/task.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/src/task.cpp.o -c /home/lotuscc/git_projects/cgo/src/task.cpp
 
 CMakeFiles/demo.dir/src/task.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/src/task.cpp.i"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/src/task.cpp > CMakeFiles/demo.dir/src/task.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lotuscc/git_projects/cgo/src/task.cpp > CMakeFiles/demo.dir/src/task.cpp.i
 
 CMakeFiles/demo.dir/src/task.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/src/task.cpp.s"
-	/usr/bin/clang++-14 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/src/task.cpp -o CMakeFiles/demo.dir/src/task.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lotuscc/git_projects/cgo/src/task.cpp -o CMakeFiles/demo.dir/src/task.cpp.s
 
 # Object files for target demo
 demo_OBJECTS = \

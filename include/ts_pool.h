@@ -23,7 +23,7 @@ class ell_ts_pool {
 
     std::atomic_bool done;
     ts_queue<work_t> work_queue;
-    std::vector<std::jthread> threads;
+    std::vector<std::thread> threads;
 
     void worker_thread() {
 
@@ -49,7 +49,7 @@ public:
         try {
             for (unsigned i = 0; i < thread_count; ++i) {
                 threads.push_back(
-                    std::jthread(&ell_ts_pool::worker_thread, this));
+                    std::thread(&ell_ts_pool::worker_thread, this));
             }
         } catch (...) {
             done = true;

@@ -13,8 +13,8 @@
 #include <unistd.h>
 #include <vector>
 
-#include "task.h"
 #include "Server.h"
+#include "task.h"
 
 void thread() {
     while (1) {
@@ -25,7 +25,7 @@ void thread() {
             // if (getcontext(&t->parent) == -1) {
             //     printf("make task failture! \n");
             // }
-            
+
             printf("test: %d \n", 88);
 
             // printf("task: %d \n", 88);
@@ -41,6 +41,22 @@ void thread() {
     }
 }
 
+void my_Message(Connector *conn) {
+    char data[64];
+
+    while (1) {
+        memset(data, '\0', 64);
+        conn->read_nbytes(data, 64);
+
+        // conn->read_until(data, 4);
+
+        printf("read %d bytes:\n%s \n", 64, data);
+
+        conn->send_nbytes(data, 64);
+        // conn->send_nbytes((void *)"hello", 5);
+    }
+}
+
 int main() {
     // std::thread t(thread);
     // std::thread t(thread);
@@ -49,6 +65,24 @@ int main() {
     ell_Ipv4Addr local_addr;
 
     Server server(local_addr);
+
+    server.message = [](Connector *conn) {
+        char data[64];
+
+        while (1) {
+            memset(data, '\0', 64);
+            conn->read_nbytes(data, 64);
+
+            // conn->read_until(data, 4);
+
+            printf("read %d bytes:\n%s \n", 64, data);
+
+            conn->send_nbytes(data, 64);
+            // conn->send_nbytes((void *)"hello", 5);
+        }
+    };
+
+    // server.setdefaultMessage(my_Message);
 
     // server.accept();
     server.start();
