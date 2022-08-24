@@ -1,3 +1,0 @@
-/home/lotuscc/git_projects/cgo/build/CMakeFiles/rebuild_cache.dir
-/home/lotuscc/git_projects/cgo/build/CMakeFiles/edit_cache.dir
-/home/lotuscc/git_projects/cgo/build/CMakeFiles/demo.dir
