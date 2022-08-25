@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/lotuscc/git_projects/cgo/build",
+  "command": "/usr/bin/g++   -I/home/lotuscc/git_projects/cgo/include  -Wall --std=c++2a -O0 -g -g   -g -std=c++2a -fno-elide-constructors -o CMakeFiles/demo.dir/main.cpp.o -c /home/lotuscc/git_projects/cgo/main.cpp",
+  "file": "/home/lotuscc/git_projects/cgo/main.cpp"
+},
+{
+  "directory": "/home/lotuscc/git_projects/cgo/build",
+  "command": "/usr/bin/g++   -I/home/lotuscc/git_projects/cgo/include  -Wall --std=c++2a -O0 -g -g   -g -std=c++2a -fno-elide-constructors -o CMakeFiles/demo.dir/src/IPv4Addr.cpp.o -c /home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp",
+  "file": "/home/lotuscc/git_projects/cgo/src/IPv4Addr.cpp"
+},
+{
+  "directory": "/home/lotuscc/git_projects/cgo/build",
+  "command": "/usr/bin/g++   -I/home/lotuscc/git_projects/cgo/include  -Wall --std=c++2a -O0 -g -g   -g -std=c++2a -fno-elide-constructors -o CMakeFiles/demo.dir/src/socket.cpp.o -c /home/lotuscc/git_projects/cgo/src/socket.cpp",
+  "file": "/home/lotuscc/git_projects/cgo/src/socket.cpp"
+},
+{
+  "directory": "/home/lotuscc/git_projects/cgo/build",
+  "command": "/usr/bin/g++   -I/home/lotuscc/git_projects/cgo/include  -Wall --std=c++2a -O0 -g -g   -g -std=c++2a -fno-elide-constructors -o CMakeFiles/demo.dir/src/task.cpp.o -c /home/lotuscc/git_projects/cgo/src/task.cpp",
+  "file": "/home/lotuscc/git_projects/cgo/src/task.cpp"
+}
+]
