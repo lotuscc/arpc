@@ -7,7 +7,7 @@
 在异步读写接口中如果发生了阻塞事件，会自动yield掉当前协程，让出CPU使用权以提高系统性能。
 
 
-系统的整体架构如图所示![整体架构](https://github.com/lotuscc/arpc/blob/dev/img/arpc.drawio.png)
+系统的整体架构如图所示![](https://github.com/lotuscc/arpc/blob/dev/img/arpc.drawio.png)
 
 每个Connector提供异步读写接口。
 在异步读写的过程中，如果发生阻塞操作（比如需要读64个字节，但是网络中只发送了32个字节），
