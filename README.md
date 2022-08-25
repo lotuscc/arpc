@@ -1,6 +1,3 @@
-一个异步RPC框架
-
-
 简单异步RPC框架。
 
 关键特性：异步、协程、Reactor、Protobuf、RPC。
