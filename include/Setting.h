@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "connection.h"
+#include "arpc_connector.h"
 #include <functional>
 #include <map>
 #include <vector>
