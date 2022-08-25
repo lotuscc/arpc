@@ -5,6 +5,7 @@
 #include <queue>
 #include <stdint.h>
 #include <stdio.h>
+#include <sys/ucontext.h>
 #include <ucontext.h>
 #include <vector>
 
@@ -28,6 +29,8 @@ public:
         if (getcontext(&context) == -1) {
             printf("make task failture! \n");
         }
+        
+        // parent = context;
 
         ss_sp = malloc(STACK_SIZE);
         context.uc_stack.ss_sp = ss_sp;
@@ -51,6 +54,10 @@ public:
     }
     void yield() {
         swapcontext(&context, &parent);
+    }
+
+    void copy(ucontext_t* ctx){
+        *ctx = context;
     }
 
     int id;

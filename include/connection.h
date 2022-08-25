@@ -13,14 +13,21 @@
 
 #include <iostream>
 
+#include "socketOps.h"
+
 class Connector {
 private:
 public:
+    using EeventCallBack = std::function<void(void)>;
+
     task *t = NULL;
 
     ell_Socket socket;
+    EeventCallBack ReadCallBack;
 
-    std::function<void(void)> callback;
+    EeventCallBack WriteCallBack;
+    EeventCallBack CloseCallBack;
+    EeventCallBack ErrorCallBack;
 
     Connector(int fd, ell_Ipv4Addr addr) : socket(fd) {
         // t = new task();
@@ -30,7 +37,11 @@ public:
         // t = new task();
     }
 
-    std::function<void(void)> call;
+    ~Connector(){
+        
+    }
+
+    // std::function<void(void)> call;
 
     // 存在几种策略：
     // 直接读取所有数据，将多余的数据保存在缓存中，直到无数据可读 yield，
@@ -46,19 +57,18 @@ public:
                              size - cur_recved_n, 0);
             if (ret == 0) {
                 printf("error: close  fd: %d \n", socket.fd());
-                // swapcontext(&t->context, &t->parent);
+                
                 t->yield();
 
             } else if (ret < 0) {
                 if (ret == EAGAIN) {
-                    // 无数据可读，切换回去
-                    // swapcontext(&t->context, &t->parent);
+                    // 无数据可读，切换回去                    
                     t->yield();
 
                 } else {
-                    printf("other error fd: %d", socket.fd());
+                    printf("other error fd: %d \n", socket.fd());
 
-                    // swapcontext(&t->context, &t->parent);
+                    sockops::close(socket.fd());                    
                     t->yield();
                 }
             } else if (ret > 0) {
@@ -88,33 +98,15 @@ public:
     }
 
     void send_nbytes(void *buf, int size) {
-        ::send(socket.fd(), buf, size, 0);
+        sockops::send(socket.fd(), buf, size, 0);
     }
 
     // 如果无法一开始就确定读取的数据量，必须加缓冲 用于处理读取的多余的数据
     void read_until_Enter(void *buf, int size) {}
 
-    // demo
-    void read_until(void *data, int size) {
-
-        printf("read some bytes\n");
-        socket.recv(data, 4);
-
-        // 下面两行必须加锁，保证一起执行
-        swapcontext(&t->context, &t->parent);
-
-        printf("read remain bytes\n");
-        // socket.recv((char *)data + 4, 4);
+    void close() {        
+        sockops::close(socket.fd());
     }
-
-    // for test
-    // 让出线程控制权，但是该TCP连接不断
-    void resume(void) {
-        printf("resume\n");
-        swapcontext(&t->context, &t->parent);
-    }
-
-    void close() {}
 
     void accept() {
         // int r = ::accept()

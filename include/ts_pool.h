@@ -14,6 +14,7 @@
 #include "task.h"
 #include <unistd.h>
 
+#include "joining_thread.h"
 
 class ell_ts_pool {
     // using work_t = function_wrapper;
@@ -23,10 +24,11 @@ class ell_ts_pool {
 
     std::atomic_bool done;
     ts_queue<work_t> work_queue;
-    std::vector<std::thread> threads;
+    std::vector<joining_thread> threads;
+
+    // std::vector<std::jthread> threads;
 
     void worker_thread() {
-
         while (!done) {
             work_t task;
             if (work_queue.try_pop(task)) {
@@ -49,7 +51,7 @@ public:
         try {
             for (unsigned i = 0; i < thread_count; ++i) {
                 threads.push_back(
-                    std::thread(&ell_ts_pool::worker_thread, this));
+                    joining_thread(&ell_ts_pool::worker_thread, this));
             }
         } catch (...) {
             done = true;

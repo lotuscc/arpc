@@ -66,9 +66,8 @@ public:
                         printf("epoll poll error! \n");
                         exit(EXIT_FAILURE);
                     }
-                    printf("push task addr %lx \n", setting_->Conns[fd]->t);
-                    // task_queue.push(setting_->Conns[fd]->t);
-
+                    printf("push task addr %lx \n", setting_->Conns[fd]->t);                   
+                    
                     pool_->submit(setting_->Conns[fd]->t);
                 }
             }

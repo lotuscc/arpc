@@ -5,6 +5,9 @@
 #include <cstring>
 #include <netinet/in.h>
 
+// NetAddress
+
+
 void ell_Ipv4Addr::remake(const char *ip, int port) {
     bzero(&addr_, sizeof(addr_));
     addr_.sin_family = AF_INET;
