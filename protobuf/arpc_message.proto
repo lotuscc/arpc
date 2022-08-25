@@ -1,0 +1,6 @@
+syntax = "proto3";
+package arpc;
+// protoc -I=./ --cpp_out=./ arpc_message.proto 
+message arpc_message {
+  string content = 3;
+}

@@ -19,22 +19,32 @@
 
 
 ```cpp
-ell_Ipv4Addr local_addr;
+int main() {
+    ell_Ipv4Addr local_addr;
 
-Server server(local_addr);
+    Server server(local_addr);
 
-server.message = [](Connector *conn) {   
-    // read request size
-    conn->read_nbytes(&len, 4);
+    server.message = [](Connector *conn) {
+        static arpc::arpc_message message;
+        static char data[128];
+        memset(data, '\0', 128);
 
-    // read request
-    conn->read_nbytes(data, len);
+        // read request size
+        conn->read_nbytes(data, 4);
+        int32_t len = *(int32_t *)(data);
+        printf("read %d bytes\n", len);
+        
+        // read request
+        conn->read_nbytes(data+4, len);
+        auto m = message.ParseFromArray(&data[4], len);
 
-    // send some data
-    conn->send_nbytes(httpResponse_hello, sizeof(httpResponse_hello)-1);
-};
+        printf("m: %s \n", message.content().data());
+    };
 
-server.start();
+    server.start();
+
+    return 0;
+}
 ```
 
 简单的业务服务如上所示，这里假设所采的协议格式为：先发送4个字节的数据包大小，然后发送数据包内容

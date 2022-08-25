@@ -36,3 +36,9 @@ add_executable(demo main.cpp ${DIR_LIBS_SRCS})
 
 find_package(Threads)
 target_link_libraries(demo ${CMAKE_THREAD_LIBS_INIT})
+
+
+find_package(Protobuf REQUIRED)
+include_directories(${Protobuf_INCLUDE_DIRS})
+
+target_link_libraries(demo ${PROTOBUF_LIBRARIES})
