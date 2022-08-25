@@ -16,77 +16,40 @@
 #include "Server.h"
 #include "task.h"
 
-void thread() {
-    while (1) {
-        if (!task_queue.empty()) {
-            task *t = task_queue.front();
-            task_queue.pop();
+char httpResponse_hello[] = \
+"HTTP/1.1 200 Ok\r\n" \
+"Context-type: text/plain\r\n" \
+"Context-length: 20\r\n" \
+"\r\n" \
+"Hi! I am a messsage!";
 
-            // if (getcontext(&t->parent) == -1) {
-            //     printf("make task failture! \n");
-            // }
-
-            printf("test: %d \n", 88);
-
-            // printf("task: %d \n", 88);
-
-            // swapcontext(&t->parent, &t->context);
-            t->resume();
-
-            printf("from parent \n");
-        } else {
-            sleep(1);
-            printf("sleep \n");
-        }
-    }
-}
-
-void my_Message(Connector *conn) {
-    char data[64];
-
-    while (1) {
-        memset(data, '\0', 64);
-        conn->read_nbytes(data, 64);
-
-        // conn->read_until(data, 4);
-
-        printf("read %d bytes:\n%s \n", 64, data);
-
-        conn->send_nbytes(data, 64);
-        // conn->send_nbytes((void *)"hello", 5);
-    }
-}
 
 int main() {
-    // std::thread t(thread);
-    // std::thread t(thread);
-    // t.detach();
-
     ell_Ipv4Addr local_addr;
 
     Server server(local_addr);
 
     server.message = [](Connector *conn) {
-        char data[64];
+        static char data[128];
 
-        while (1) {
-            memset(data, '\0', 64);
-            conn->read_nbytes(data, 64);
+        // while (1) {
+            memset(data, '\0', 128);
+            conn->read_nbytes(data, 78);
 
-            // conn->read_until(data, 4);
+            printf("read %d bytes:\n%s \n", 78, data);
 
-            printf("read %d bytes:\n%s \n", 64, data);
+            conn->send_nbytes(httpResponse_hello, sizeof(httpResponse_hello)-1);   // -1 去掉结尾的'\0'                 
+                        
+        // }
 
-            conn->send_nbytes(data, 64);
-            // conn->send_nbytes((void *)"hello", 5);
-        }
+        // 不需要手动close，该函数结束之后会自动close
+        // 如果想提前close，请使用return，直接返回
+        // conn->close();
     };
 
     // server.setdefaultMessage(my_Message);
 
-    // server.accept();
     server.start();
 
-    // t.join();
     return 0;
 }

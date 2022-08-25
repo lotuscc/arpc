@@ -21,7 +21,7 @@ void ell_Socket::remake(int fd) { sockfd_ = fd; }
 // 创建默认socket IPv4、非阻塞
 int ell_Socket::create_defaultsocket() {
     // SOCK_NONBLOCK
-    return sockops::socket(PF_INET, SOCK_STREAM | SOCK_CLOEXEC, 0);
+    return sockops::socket(PF_INET, SOCK_STREAM | SOCK_CLOEXEC | SOCK_NONBLOCK, 0);
 }
 
 ell_Socket::ell_Socket() : sockfd_(create_defaultsocket()) {}

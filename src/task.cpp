@@ -12,10 +12,6 @@
 
 class task_queue {
     std::queue<task *> queue;
-
-    
-        
-
 };
 
 // void make_task(task *t, void (*func)(void), uintptr_t ptr) {
