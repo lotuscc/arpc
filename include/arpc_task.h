@@ -25,6 +25,8 @@ public:
     void *ss_sp = NULL;
     size_t ss_size = STACK_SIZE;
 
+    bool running = false;
+
     int id;
 
     task(void (*func)(void), uintptr_t ptr);

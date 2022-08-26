@@ -19,9 +19,7 @@
 // 也就是上一个context还未保存，此时另一个线程又开始执行context，
 // 会造成一段代码被重复执行
 
-
 // 解决办法，可以在task中设置一个原子状态位，显示其状态，
-
 
 task::task(void (*func)(void), uintptr_t ptr) {
     if (getcontext(&context) == -1) {
@@ -45,8 +43,10 @@ task::~task() {
 }
 
 void task::resume() {
+    running = true;
     swapcontext(&parent, &context);
 }
 void task::yield() {
+    running = false;
     swapcontext(&context, &parent);
 }

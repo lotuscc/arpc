@@ -58,7 +58,10 @@ void Poller::poll(void) {
                 }
                 printf("push task addr %lx \n", setting_->Conns[fd]->t);
 
-                pool_->submit(setting_->Conns[fd]->t);
+                // 如果不在运行中，则加入队列使其运行
+                if (!setting_->Conns[fd]->t->running) {
+                    pool_->submit(setting_->Conns[fd]->t);
+                }
             }
         }
     }
