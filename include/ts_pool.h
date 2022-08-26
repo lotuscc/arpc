@@ -11,7 +11,7 @@
 
 #include "ts_queue.h"
 
-#include "task.h"
+#include "arpc_task.h"
 #include <unistd.h>
 
 #include "joining_thread.h"

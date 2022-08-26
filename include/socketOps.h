@@ -17,20 +17,22 @@ public:
         }
         return ret;
     }
-    inline static void bind(int __fd, const struct sockaddr *__addr,
-                            socklen_t __len) {
+    inline static int bind(int __fd, const struct sockaddr *__addr,
+                           socklen_t __len) {
         auto ret = ::bind(__fd, __addr, __len);
         if (ret == -1) {
             LOG("bind socket failture!");
             LOG("errON: {} errMsg: {}", errno, strerror(errno));
         }
+        return ret;
     }
-    inline static void listen(int __fd, int __n) {
+    inline static int listen(int __fd, int __n) {
         auto ret = ::listen(__fd, __n);
         if (ret == -1) {
             LOG("listen socket failture!");
             LOG("errON: {} errMsg: {}", errno, strerror(errno));
         }
+        return ret;
     }
     inline static int accept(int __fd, struct sockaddr *__restrict __addr,
                              socklen_t *__restrict __addr_len) {
@@ -41,27 +43,30 @@ public:
         }
         return ret;
     }
-    inline static void connect(int __fd, const struct sockaddr *__addr,
-                               socklen_t __len) {
+    inline static int connect(int __fd, const struct sockaddr *__addr,
+                              socklen_t __len) {
         auto ret = ::connect(__fd, __addr, __len);
         if (ret == -1) {
             LOG("connect socket failture!");
             LOG("errON: {} errMsg: {}", errno, strerror(errno));
         }
+        return ret;
     }
-    inline static void close(int __fd) {
+    inline static int close(int __fd) {
         auto ret = ::close(__fd);
         if (ret == -1) {
             LOG("close socket failture!");
             LOG("errON: {} errMsg: {}", errno, strerror(errno));
         }
+        return ret;
     }
-    inline static void shutdown(int __fd, int __how) {
+    inline static int shutdown(int __fd, int __how) {
         auto ret = ::shutdown(__fd, __how);
         if (ret == -1) {
             LOG("shutdown socket failture!");
             LOG("errON: {} errMsg: {}", errno, strerror(errno));
         }
+        return ret;
     }
 
     inline static size_t send(int __fd, const void *__buf, size_t __n,

@@ -1,4 +1,3 @@
-#include "Server.h"
 #include <chrono>
 #include <cstddef>
 #include <cstdlib>
@@ -13,8 +12,8 @@
 #include <unistd.h>
 #include <vector>
 
-#include "Server.h"
-#include "task.h"
+#include "arpc_server.h"
+#include "arpc_task.h"
 
 char httpResponse_hello[] = "HTTP/1.1 200 Ok\r\n"
                             "Context-type: text/plain\r\n"
