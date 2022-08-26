@@ -18,10 +18,7 @@ Connector::~Connector() {}
 
 void Connector::read_nbytes(void *buf, int size) {
     int cur_recved_n = 0;
-    while (1) {
-        if (cur_recved_n == size) {
-            return;
-        }
+    while (cur_recved_n < size) {
         int ret = ::recv(socket.fd(), (char *)buf + cur_recved_n,
                          size - cur_recved_n, 0);
         if (ret == 0) {
@@ -67,7 +64,23 @@ int Connector::read_allbytes(void *buf, int size) {
 }
 
 void Connector::send_nbytes(void *buf, int size) {
-    sockops::send(socket.fd(), buf, size, 0);
+    int cur_sended_n = 0;
+    while (cur_sended_n < size) {
+        int ret = sockops::send(socket.fd(), (char *)buf + cur_sended_n,
+                                size - cur_sended_n, 0);
+        if (ret > 0) {
+            // 发送了ret字节数据
+            cur_sended_n += ret;
+        } else if (ret == EWOULDBLOCK) {
+            // socket 缓冲区已满
+
+            printf("send buffer is full: %d", socket.fd());
+            t->yield();
+        } else {
+            // other error
+            printf("other error fd: %d \n", socket.fd());
+        }
+    }
 }
 
 // 如果无法一开始就确定读取的数据量，必须加缓冲 用于处理读取的多余的数据
